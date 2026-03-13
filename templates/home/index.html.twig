@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Bienvenue sur SchoolPrepar</h1>
+
+<h2>Filières Informatiques</h2>
+
+<ul>
+
+{% for filiere in filieres %}
+
+<li>
+<h3>{{ filiere.nom }}</h3>
+<p>{{ filiere.description }}</p>
+
+<a href="/filieres">Voir les détails</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% endblock %}

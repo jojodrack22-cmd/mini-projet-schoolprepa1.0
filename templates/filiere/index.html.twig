@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Détails des Filières Informatiques</h1>
+
+{% for filiere in filieres %}
+
+<div>
+
+<h2>{{ filiere.nom }}</h2>
+
+<p>{{ filiere.details }}</p>
+
+<hr>
+
+</div>
+
+{% endfor %}
+
+<a href="/">Retour à l'accueil</a>
+
+{% endblock %}
