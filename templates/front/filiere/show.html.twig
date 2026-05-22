@@ -1,0 +1,33 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}{{ filiere.nom }} — SchoolPrepar{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_filiere_index') }}">Filières</a></li>
+            <li class="breadcrumb-item active">{{ filiere.nom }}</li>
+        </ol>
+    </nav>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">{{ filiere.nom }}</h2>
+        </div>
+        <div class="card-body">
+            <p class="lead">{{ filiere.description }}</p>
+            <hr>
+            <p>{{ filiere.details }}</p>
+            <div class="row mt-3">
+                <div class="col-md-6"><strong>⏱ Durée :</strong> {{ filiere.duree }}</div>
+                <div class="col-md-6"><strong>💼 Débouchés :</strong> {{ filiere.debouches }}</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="{{ path('app_filiere_index') }}" class="btn btn-secondary">← Retour</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

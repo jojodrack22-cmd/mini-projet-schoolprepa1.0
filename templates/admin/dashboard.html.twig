@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Dashboard — Admin{% endblock %}
+
+{% block body %}
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="fs-1">📚</div>
+                <div>
+                    <h6 class="text-muted mb-0">Filières</h6>
+                    <h3 class="mb-0 text-primary">4</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="fs-1">🏫</div>
+                <div>
+                    <h6 class="text-muted mb-0">Établissements</h6>
+                    <h3 class="mb-0 text-success">4</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="fs-1">👤</div>
+                <div>
+                    <h6 class="text-muted mb-0">Utilisateurs</h6>
+                    <h3 class="mb-0 text-warning">0</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white fw-bold">Accès rapides</div>
+            <div class="card-body">
+                <a href="{{ path('app_admin_filiere_index') }}" class="btn btn-outline-primary me-2 mb-2">
+                    📚 Gérer les filières
+                </a>
+                <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-outline-success mb-2">
+                    🏫 Gérer les établissements
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white fw-bold">Informations</div>
+            <div class="card-body">
+                <p class="text-muted">Bienvenue dans le panneau d'administration de SchoolPrepar.</p>
+                <p class="text-muted mb-0">Gérez les filières et établissements depuis ce tableau de bord.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

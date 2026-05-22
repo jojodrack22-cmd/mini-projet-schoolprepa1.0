@@ -18,7 +18,7 @@ class EtablissementController extends AbstractController
             ['id' => 4, 'nom' => 'INFA',               'ville' => 'Kara', 'type' => 'Institut public'],
         ];
 
-        return $this->render('etablissement/index.html.twig', [
+        return $this->render('front/etablissement/index.html.twig', [
             'etablissements' => $etablissements,
         ]);
     }

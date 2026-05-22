@@ -46,7 +46,7 @@ class FiliereController extends AbstractController
     #[Route('/filieres', name: 'app_filiere_index')]
     public function index(): Response
     {
-        return $this->render('filiere/index.html.twig', [
+        return $this->render('front/filiere/index.html.twig', [
             'filieres' => $this->filieres,
         ]);
     }
@@ -66,7 +66,7 @@ class FiliereController extends AbstractController
             throw $this->createNotFoundException('Filière introuvable.');
         }
 
-        return $this->render('filiere/show.html.twig', [
+        return $this->render('front/filiere/show.html.twig', [
             'filiere' => $filiere,
         ]);
     }
