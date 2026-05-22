@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les établissements{% endblock %}
+
+{% block body %}
+<h2 class="mb-4">Tous les établissements</h2>
+<div class="row">
+    {% for etab in etablissements %}
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ etab.nom }}</h5>
+                <span class="badge bg-info text-dark">{{ etab.type }}</span>
+                <p class="mt-2">📍 {{ etab.ville }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

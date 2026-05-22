@@ -1,3 +1,4 @@
+/*assets/controllers/hello_controller.js*/
 import { Controller } from '@hotwired/stimulus';
 
 /*

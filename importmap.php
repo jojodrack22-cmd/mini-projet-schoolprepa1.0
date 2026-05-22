@@ -1,5 +1,5 @@
 <?php
-
+// importmap.php
 /**
  * Returns the importmap for this application.
  *
@@ -26,3 +26,4 @@ return [
         'version' => '7.3.0',
     ],
 ];
+

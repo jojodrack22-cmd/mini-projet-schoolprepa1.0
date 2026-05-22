@@ -1,25 +1,36 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ titre }}{% endblock %}
+
 {% block body %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1 class="display-5 fw-bold text-primary">{{ titre }}</h1>
+    <p class="fs-4">{{ description }}</p>
+    <a href="{{ path('app_filiere_index') }}" class="btn btn-primary btn-lg me-2">Voir les filières</a>
+    <a href="{{ path('app_etablissement_index') }}" class="btn btn-outline-primary btn-lg">Voir les établissements</a>
+</div>
 
-<h1>Bienvenue sur SchoolPrepar</h1>
-
-<h2>Filières Informatiques</h2>
-
-<ul>
-
-{% for filiere in filieres %}
-
-<li>
-<h3>{{ filiere.nom }}</h3>
-<p>{{ filiere.description }}</p>
-
-<a href="/filieres">Voir les détails</a>
-
-</li>
-
-{% endfor %}
-
-</ul>
-
+<div class="row mt-4">
+    <div class="col-md-4 mb-3">
+        <div class="card text-center p-4 h-100">
+            <div class="fs-1">🏫</div>
+            <h5 class="mt-2">Établissements</h5>
+            <p class="text-muted">Trouvez les meilleures écoles</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-center p-4 h-100">
+            <div class="fs-1">📚</div>
+            <h5 class="mt-2">Filières</h5>
+            <p class="text-muted">Explorez les formations</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-center p-4 h-100">
+            <div class="fs-1">🎯</div>
+            <h5 class="mt-2">Orientation</h5>
+            <p class="text-muted">Préparez votre avenir</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SchoolPrepar
 
 Plateforme d'orientation scolaire pour aider les élèves à choisir leur parcours académique.
