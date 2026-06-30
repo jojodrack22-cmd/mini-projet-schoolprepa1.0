@@ -3,10 +3,19 @@
 {% block title %}Gestion des filières — Admin{% endblock %}
 
 {% block body %}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label == 'success' ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endfor %}
+
 <div class="card border-0 shadow-sm">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
         <h5 class="mb-0">📚 Toutes les filières</h5>
-        <a href="#" class="btn btn-primary btn-sm">+ Ajouter</a>
+        <a href="{{ path('app_admin_filiere_new') }}" class="btn btn-primary btn-sm">+ Ajouter</a>
     </div>
     <div class="card-body">
         <table class="table table-hover">
@@ -15,7 +24,8 @@
                     <th>#</th>
                     <th>Nom</th>
                     <th>Durée</th>
-                    <th>Débouchés</th>
+                    <th>Description</th>
+                    <th>Établissements</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -23,13 +33,23 @@
                 {% for filiere in filieres %}
                 <tr>
                     <td>{{ filiere.id }}</td>
-                    <td>{{ filiere.nom }}</td>
-                    <td>{{ filiere.duree }}</td>
-                    <td>{{ filiere.debouches }}</td>
+                    <td><strong>{{ filiere.nom }}</strong></td>
+                    <td>{{ filiere.duree ?? '—' }}</td>
+                    <td class="text-muted small">{{ filiere.description|slice(0, 60) }}{% if filiere.description|length > 60 %}…{% endif %}</td>
+                    <td><span class="badge bg-info text-dark">{{ filiere.etablissements|length }}</span></td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
-                        <a href="#" class="btn btn-sm btn-outline-danger">🗑 Supprimer</a>
+                        <a href="{{ path('app_admin_filiere_show', {id: filiere.id}) }}" class="btn btn-sm btn-outline-secondary">👁 Voir</a>
+                        <a href="{{ path('app_admin_filiere_edit', {id: filiere.id}) }}" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
+                        <form method="post" action="{{ path('app_admin_filiere_delete', {id: filiere.id}) }}" class="d-inline"
+                              onsubmit="return confirm('Supprimer cette filière ?')">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ filiere.id) }}">
+                            <button class="btn btn-sm btn-outline-danger">🗑 Supprimer</button>
+                        </form>
                     </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-4">Aucune filière enregistrée.</td>
                 </tr>
                 {% endfor %}
             </tbody>

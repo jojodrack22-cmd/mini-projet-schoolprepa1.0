@@ -1,20 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'front/base.html.twig' %}
 
-{% block title %}Les établissements{% endblock %}
+{% block title %}Les établissements — SchoolPrepar{% endblock %}
 
 {% block body %}
-<h2 class="mb-4">Tous les établissements</h2>
-<div class="row">
-    {% for etab in etablissements %}
-    <div class="col-md-6 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title text-primary">{{ etab.nom }}</h5>
-                <span class="badge bg-info text-dark">{{ etab.type }}</span>
-                <p class="mt-2">📍 {{ etab.ville }}</p>
+<div class="container py-5">
+    <h2 class="mb-4">Tous les établissements</h2>
+    <div class="row">
+        {% for etab in etablissements %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ etab.nom }}</h5>
+                    {% if etab.type %}
+                        <span class="badge bg-info text-dark">{{ etab.type }}</span>
+                    {% endif %}
+                    <p class="mt-2 mb-1">📍 {{ etab.ville }}</p>
+                    {% if etab.contact %}
+                        <p class="text-muted small">📞 {{ etab.contact }}</p>
+                    {% endif %}
+                    {% if etab.filieres is not empty %}
+                        <div class="mt-2">
+                            {% for filiere in etab.filieres %}
+                                <span class="badge bg-secondary me-1">{{ filiere.nom }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
+        {% else %}
+        <div class="col-12">
+            <p class="text-muted">Aucun établissement disponible pour le moment.</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

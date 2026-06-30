@@ -2,24 +2,80 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Filiere;
+use App\Form\FiliereType;
+use App\Repository\FiliereRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/admin/filieres')]
 class AdminFiliereController extends AbstractController
 {
-    private array $filieres = [
-        ['id' => 1, 'nom' => 'Génie Logiciel',                'duree' => '3 ans', 'debouches' => 'Développeur, Architecte'],
-        ['id' => 2, 'nom' => 'Réseaux et Télécommunications', 'duree' => '3 ans', 'debouches' => 'Administrateur réseau'],
-        ['id' => 3, 'nom' => 'Intelligence Artificielle',     'duree' => '3 ans', 'debouches' => 'Data Scientist, Ingénieur IA'],
-        ['id' => 4, 'nom' => 'Cybersécurité',                 'duree' => '3 ans', 'debouches' => 'Expert sécurité'],
-    ];
-
-    #[Route('/admin/filieres', name: 'app_admin_filiere_index')]
-    public function index(): Response
+    #[Route('', name: 'app_admin_filiere_index', methods: ['GET'])]
+    public function index(FiliereRepository $repo): Response
     {
         return $this->render('admin/filiere/index.html.twig', [
-            'filieres' => $this->filieres,
+            'filieres' => $repo->findAll(),
         ]);
+    }
+
+    #[Route('/new', name: 'app_admin_filiere_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $em): Response
+    {
+        $filiere = new Filiere();
+        $form = $this->createForm(FiliereType::class, $filiere);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($filiere);
+            $em->flush();
+            $this->addFlash('success', 'Filière créée avec succès.');
+            return $this->redirectToRoute('app_admin_filiere_index');
+        }
+
+        return $this->render('admin/filiere/new.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_admin_filiere_show', methods: ['GET'])]
+    public function show(Filiere $filiere): Response
+    {
+        return $this->render('admin/filiere/show.html.twig', [
+            'filiere' => $filiere,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_admin_filiere_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Filiere $filiere, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(FiliereType::class, $filiere);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'Filière modifiée avec succès.');
+            return $this->redirectToRoute('app_admin_filiere_index');
+        }
+
+        return $this->render('admin/filiere/edit.html.twig', [
+            'filiere' => $filiere,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/delete', name: 'app_admin_filiere_delete', methods: ['POST'])]
+    public function delete(Request $request, Filiere $filiere, EntityManagerInterface $em): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$filiere->getId(), $request->request->get('_token'))) {
+            $em->remove($filiere);
+            $em->flush();
+            $this->addFlash('success', 'Filière supprimée.');
+        }
+
+        return $this->redirectToRoute('app_admin_filiere_index');
     }
 }

@@ -1,0 +1,46 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Nouvel événement — Admin{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">📅 Nouvel événement</h5>
+                <a href="{{ path('app_admin_evenement_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
+            </div>
+            <div class="card-body">
+                {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+                    <div class="mb-3">
+                        {{ form_label(form.titre) }}
+                        {{ form_widget(form.titre) }}
+                        {{ form_errors(form.titre) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.dateEvenement) }}
+                        {{ form_widget(form.dateEvenement) }}
+                        {{ form_errors(form.dateEvenement) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.lieu) }}
+                        {{ form_widget(form.lieu) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.etablissement) }}
+                        {{ form_widget(form.etablissement) }}
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <a href="{{ path('app_admin_evenement_index') }}" class="btn btn-outline-secondary">Annuler</a>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

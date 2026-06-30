@@ -1,0 +1,65 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ filiere.nom }} — Admin{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">📚 {{ filiere.nom }}</h5>
+                <div class="d-flex gap-2">
+                    <a href="{{ path('app_admin_filiere_edit', {id: filiere.id}) }}" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
+                    <a href="{{ path('app_admin_filiere_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">ID</dt>
+                    <dd class="col-sm-9">#{{ filiere.id }}</dd>
+
+                    <dt class="col-sm-3">Nom</dt>
+                    <dd class="col-sm-9">{{ filiere.nom }}</dd>
+
+                    <dt class="col-sm-3">Durée</dt>
+                    <dd class="col-sm-9">{{ filiere.duree ?? '—' }}</dd>
+
+                    <dt class="col-sm-3">Description</dt>
+                    <dd class="col-sm-9">{{ filiere.description ?? '—' }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white fw-bold">🏫 Établissements proposant cette filière</div>
+            <div class="card-body">
+                {% if filiere.etablissements is empty %}
+                    <p class="text-muted">Aucun établissement associé.</p>
+                {% else %}
+                    <ul class="list-group list-group-flush">
+                        {% for etab in filiere.etablissements %}
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>{{ etab.nom }}</span>
+                                <span class="text-muted">{{ etab.ville }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm border-danger">
+            <div class="card-header bg-danger text-white fw-bold">Zone dangereuse</div>
+            <div class="card-body">
+                <form method="post" action="{{ path('app_admin_filiere_delete', {id: filiere.id}) }}"
+                      onsubmit="return confirm('Supprimer définitivement cette filière ?')">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ filiere.id) }}">
+                    <button class="btn btn-danger w-100">🗑 Supprimer cette filière</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
