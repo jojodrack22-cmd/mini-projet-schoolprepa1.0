@@ -1,61 +1,60 @@
-{% extends 'admin/base.html.twig' %}
+﻿{% extends 'admin/base.html.twig' %}
 
 {% block title %}{{ evenement.titre }} — Admin{% endblock %}
 
 {% block body %}
 <div class="row">
-    <div class="col-md-8">
-        <div class="card border-0 shadow-sm mb-4">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">📅 {{ evenement.titre }}</h5>
-                <div class="d-flex gap-2">
-                    <a href="{{ path('app_admin_evenement_edit', {id: evenement.id}) }}" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
-                    <a href="{{ path('app_admin_evenement_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
-                </div>
-            </div>
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-3">ID</dt>
-                    <dd class="col-sm-9">#{{ evenement.id }}</dd>
+ <div class="col-md-8">
+ <div class="card border-0 shadow-sm mb-4">
+ <div class="card-header bg-white d-flex justify-content-between align-items-center"><h5 class="mb-0">{{ evenement.titre }}</h5>
+ <div class="d-flex gap-2">
+ <a href="{{ path('app_admin_evenement_edit', {id: evenement.id}) }}" class="btn btn-sm btn-outline-primary">Modifier</a>
+ <a href="{{ path('app_admin_evenement_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
+ </div>
+ </div>
+ <div class="card-body">
+ <dl class="row">
+ <dt class="col-sm-3">ID</dt>
+ <dd class="col-sm-9">#{{ evenement.id }}</dd>
 
-                    <dt class="col-sm-3">Titre</dt>
-                    <dd class="col-sm-9">{{ evenement.titre }}</dd>
+ <dt class="col-sm-3">Titre</dt>
+ <dd class="col-sm-9">{{ evenement.titre }}</dd>
 
-                    <dt class="col-sm-3">Date</dt>
-                    <dd class="col-sm-9">{{ evenement.dateEvenement|date('d/m/Y à H:i') }}</dd>
+ <dt class="col-sm-3">Date</dt>
+ <dd class="col-sm-9">{{ evenement.dateEvenement|date('d/m/Y à H:i') }}</dd>
 
-                    <dt class="col-sm-3">Lieu</dt>
-                    <dd class="col-sm-9">{{ evenement.lieu ?? '—' }}</dd>
+ <dt class="col-sm-3">Lieu</dt>
+ <dd class="col-sm-9">{{ evenement.lieu ?? '—' }}</dd>
 
-                    <dt class="col-sm-3">Établissement</dt>
-                    <dd class="col-sm-9">
-                        {% if evenement.etablissement %}
-                            <a href="{{ path('app_admin_etablissement_show', {id: evenement.etablissement.id}) }}">
-                                {{ evenement.etablissement.nom }}
-                            </a>
-                        {% else %}
-                            —
-                        {% endif %}
-                    </dd>
+ <dt class="col-sm-3">Établissement</dt>
+ <dd class="col-sm-9">
+ {% if evenement.etablissement %}
+ <a href="{{ path('app_admin_etablissement_show', {id: evenement.etablissement.id}) }}">
+ {{ evenement.etablissement.nom }}
+ </a>
+ {% else %}
+ —
+ {% endif %}
+ </dd>
 
-                    <dt class="col-sm-3">Description</dt>
-                    <dd class="col-sm-9">{{ evenement.description ?? '—' }}</dd>
-                </dl>
-            </div>
-        </div>
-    </div>
+ <dt class="col-sm-3">Description</dt>
+ <dd class="col-sm-9">{{ evenement.description ?? '—' }}</dd>
+ </dl>
+ </div>
+ </div>
+ </div>
 
-    <div class="col-md-4">
-        <div class="card border-0 shadow-sm border-danger">
-            <div class="card-header bg-danger text-white fw-bold">Zone dangereuse</div>
-            <div class="card-body">
-                <form method="post" action="{{ path('app_admin_evenement_delete', {id: evenement.id}) }}"
-                      onsubmit="return confirm('Supprimer définitivement cet événement ?')">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evenement.id) }}">
-                    <button class="btn btn-danger w-100">🗑 Supprimer</button>
-                </form>
-            </div>
-        </div>
-    </div>
+ <div class="col-md-4">
+ <div class="card border-0 shadow-sm border-danger">
+ <div class="card-header bg-danger text-white fw-bold">Zone dangereuse</div>
+ <div class="card-body">
+ <form method="post" action="{{ path('app_admin_evenement_delete', {id: evenement.id}) }}"
+ onsubmit="return confirm('Supprimer définitivement cet événement ?')">
+ <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evenement.id) }}">
+ <button class="btn btn-danger w-100">Supprimer</button>
+ </form>
+ </div>
+ </div>
+ </div>
 </div>
 {% endblock %}

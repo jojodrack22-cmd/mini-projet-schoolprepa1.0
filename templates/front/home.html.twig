@@ -1,44 +1,44 @@
-{% extends 'front/base.html.twig' %}
+﻿{% extends 'front/base.html.twig' %}
 
-{% block title %}Accueil — SchoolPrepar{% endblock %}
+{% block title %}Accueil —SchoolPrepar{% endblock %}
 
 {% block body %}
 <div class="hero text-center">
-    <div class="container">
-        <h1 class="display-4 fw-bold">{{ titre }}</h1>
-        <p class="lead mt-3">{{ description }}</p>
-        <a href="{{ path('app_filiere_index') }}" class="btn btn-light btn-lg me-2">Voir les filières</a>
-        <a href="{{ path('app_etablissement_index') }}" class="btn btn-outline-light btn-lg">Voir les établissements</a>
-    </div>
+ <div class="container">
+ <h1 class="display-4 fw-bold">{{ titre }}</h1>
+ <p class="lead mt-3">{{ description }}</p>
+ <a href="{{ path('app_filiere_index') }}" class="btn btn-light btn-lg me-2">Voir les filières</a>
+ <a href="{{ path('app_etablissement_index') }}" class="btn btn-outline-light btn-lg">Voir les établissements</a>
+ </div>
 </div>
 
 <div class="container py-5">
-    <h2 class="text-center mb-5">Pourquoi SchoolPrepar ?</h2>
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="card text-center p-4 h-100">
-                <div class="fs-1">🏫</div>
-                <h5 class="mt-3">Établissements</h5>
-                <p class="text-muted">Trouvez les meilleures écoles du Togo</p>
-                <a href="{{ path('app_etablissement_index') }}" class="btn btn-outline-primary mt-auto">Explorer</a>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card text-center p-4 h-100">
-                <div class="fs-1">📚</div>
-                <h5 class="mt-3">Filières</h5>
-                <p class="text-muted">Explorez toutes les formations disponibles</p>
-                <a href="{{ path('app_filiere_index') }}" class="btn btn-outline-primary mt-auto">Explorer</a>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card text-center p-4 h-100">
-                <div class="fs-1">🎯</div>
-                <h5 class="mt-3">Orientation</h5>
-                <p class="text-muted">Préparez votre avenir scolaire</p>
-                <a href="#" class="btn btn-outline-secondary mt-auto">Bientôt</a>
-            </div>
-        </div>
-    </div>
+ <h2 class="text-center mb-5">PourquoiSchoolPrepar ?</h2>
+ <div class="row">
+ <div class="col-md-4 mb-4">
+ <div class="card text-center p-4 h-100">
+ 
+ <h5 class="mt-3">Établissements</h5>
+ <p class="text-muted">Trouvez les meilleures écoles du Togo</p>
+ <a href="{{ path('app_etablissement_index') }}" class="btn btn-outline-primary mt-auto">Explorer</a>
+ </div>
+ </div>
+ <div class="col-md-4 mb-4">
+ <div class="card text-center p-4 h-100">
+ 
+ <h5 class="mt-3">Filières</h5>
+ <p class="text-muted">Explorez toutes les formations disponibles</p>
+ <a href="{{ path('app_filiere_index') }}" class="btn btn-outline-primary mt-auto">Explorer</a>
+ </div>
+ </div>
+ <div class="col-md-4 mb-4">
+ <div class="card text-center p-4 h-100">
+ 
+ <h5 class="mt-3">Orientation</h5>
+ <p class="text-muted">Préparez votre avenir scolaire</p>
+ <a href="#" class="btn btn-outline-secondary mt-auto">Bientôt</a>
+ </div>
+ </div>
+ </div>
 </div>
 {% endblock %}

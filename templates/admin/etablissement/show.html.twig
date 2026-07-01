@@ -1,83 +1,82 @@
-{% extends 'admin/base.html.twig' %}
+﻿{% extends 'admin/base.html.twig' %}
 
 {% block title %}{{ etablissement.nom }} — Admin{% endblock %}
 
 {% block body %}
 <div class="row">
-    <div class="col-md-8">
-        <div class="card border-0 shadow-sm mb-4">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">🏫 {{ etablissement.nom }}</h5>
-                <div class="d-flex gap-2">
-                    <a href="{{ path('app_admin_etablissement_edit', {id: etablissement.id}) }}" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
-                    <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
-                </div>
-            </div>
-            <div class="card-body">
-                <dl class="row">
-                    <dt class="col-sm-3">ID</dt>
-                    <dd class="col-sm-9">#{{ etablissement.id }}</dd>
+ <div class="col-md-8">
+ <div class="card border-0 shadow-sm mb-4">
+ <div class="card-header bg-white d-flex justify-content-between align-items-center"><h5 class="mb-0">{{ etablissement.nom }}</h5>
+ <div class="d-flex gap-2">
+ <a href="{{ path('app_admin_etablissement_edit', {id: etablissement.id}) }}" class="btn btn-sm btn-outline-primary">Modifier</a>
+ <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
+ </div>
+ </div>
+ <div class="card-body">
+ <dl class="row">
+ <dt class="col-sm-3">ID</dt>
+ <dd class="col-sm-9">#{{ etablissement.id }}</dd>
 
-                    <dt class="col-sm-3">Nom</dt>
-                    <dd class="col-sm-9">{{ etablissement.nom }}</dd>
+ <dt class="col-sm-3">Nom</dt>
+ <dd class="col-sm-9">{{ etablissement.nom }}</dd>
 
-                    <dt class="col-sm-3">Ville</dt>
-                    <dd class="col-sm-9">{{ etablissement.ville }}</dd>
+ <dt class="col-sm-3">Ville</dt>
+ <dd class="col-sm-9">{{ etablissement.ville }}</dd>
 
-                    <dt class="col-sm-3">Type</dt>
-                    <dd class="col-sm-9">{{ etablissement.type ?? '—' }}</dd>
+ <dt class="col-sm-3">Type</dt>
+ <dd class="col-sm-9">{{ etablissement.type ?? '—' }}</dd>
 
-                    <dt class="col-sm-3">Contact</dt>
-                    <dd class="col-sm-9">{{ etablissement.contact ?? '—' }}</dd>
-                </dl>
-            </div>
-        </div>
+ <dt class="col-sm-3">Contact</dt>
+ <dd class="col-sm-9">{{ etablissement.contact ?? '—' }}</dd>
+ </dl>
+ </div>
+ </div>
 
-        <div class="card border-0 shadow-sm mb-4">
-            <div class="card-header bg-white fw-bold">📚 Filières proposées</div>
-            <div class="card-body">
-                {% if etablissement.filieres is empty %}
-                    <p class="text-muted">Aucune filière associée.</p>
-                {% else %}
-                    <div class="d-flex flex-wrap gap-2">
-                        {% for filiere in etablissement.filieres %}
-                            <span class="badge bg-primary fs-6">{{ filiere.nom }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-        </div>
+ <div class="card border-0 shadow-sm mb-4">
+ <div class="card-header bg-white fw-bold">Filières proposées</div>
+ <div class="card-body">
+ {% if etablissement.filieres is empty %}
+ <p class="text-muted">Aucune filière associée.</p>
+ {% else %}
+ <div class="d-flex flex-wrap gap-2">
+ {% for filiere in etablissement.filieres %}
+ <span class="badge bg-primary fs-6">{{ filiere.nom }}</span>
+ {% endfor %}
+ </div>
+ {% endif %}
+ </div>
+ </div>
 
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white fw-bold">📅 Événements liés</div>
-            <div class="card-body">
-                {% if etablissement.evenements is empty %}
-                    <p class="text-muted">Aucun événement associé.</p>
-                {% else %}
-                    <ul class="list-group list-group-flush">
-                        {% for ev in etablissement.evenements %}
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>{{ ev.titre }}</span>
-                                <span class="text-muted small">{{ ev.dateEvenement|date('d/m/Y') }}</span>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+ <div class="card border-0 shadow-sm">
+ <div class="card-header bg-white fw-bold">Événements liés</div>
+ <div class="card-body">
+ {% if etablissement.evenements is empty %}
+ <p class="text-muted">Aucun événement associé.</p>
+ {% else %}
+ <ul class="list-group list-group-flush">
+ {% for ev in etablissement.evenements %}
+ <li class="list-group-item d-flex justify-content-between">
+ <span>{{ ev.titre }}</span>
+ <span class="text-muted small">{{ ev.dateEvenement|date('d/m/Y') }}</span>
+ </li>
+ {% endfor %}
+ </ul>
+ {% endif %}
+ </div>
+ </div>
+ </div>
 
-    <div class="col-md-4">
-        <div class="card border-0 shadow-sm border-danger">
-            <div class="card-header bg-danger text-white fw-bold">Zone dangereuse</div>
-            <div class="card-body">
-                <form method="post" action="{{ path('app_admin_etablissement_delete', {id: etablissement.id}) }}"
-                      onsubmit="return confirm('Supprimer définitivement cet établissement ?')">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ etablissement.id) }}">
-                    <button class="btn btn-danger w-100">🗑 Supprimer</button>
-                </form>
-            </div>
-        </div>
-    </div>
+ <div class="col-md-4">
+ <div class="card border-0 shadow-sm border-danger">
+ <div class="card-header bg-danger text-white fw-bold">Zone dangereuse</div>
+ <div class="card-body">
+ <form method="post" action="{{ path('app_admin_etablissement_delete', {id: etablissement.id}) }}"
+ onsubmit="return confirm('Supprimer définitivement cet établissement ?')">
+ <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ etablissement.id) }}">
+ <button class="btn btn-danger w-100">Supprimer</button>
+ </form>
+ </div>
+ </div>
+ </div>
 </div>
 {% endblock %}

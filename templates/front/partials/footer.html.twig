@@ -1,25 +1,25 @@
-<footer class="py-5 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <h5 class="text-white">🎓 SchoolPrepar</h5>
-                <p>La plateforme de préparation scolaire au Togo.</p>
-            </div>
-            <div class="col-md-4 mb-3">
-                <h6 class="text-white">Navigation</h6>
-                <ul class="list-unstyled">
-                    <li><a href="{{ path('app_home') }}" class="text-decoration-none" style="color:#aaa">Accueil</a></li>
-                    <li><a href="{{ path('app_filiere_index') }}" class="text-decoration-none" style="color:#aaa">Filières</a></li>
-                    <li><a href="{{ path('app_etablissement_index') }}" class="text-decoration-none" style="color:#aaa">Établissements</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 mb-3">
-                <h6 class="text-white">Contact</h6>
-                <p>contact@schoolprepar.tg</p>
-                <p>Lomé, Togo</p>
-            </div>
-        </div>
-        <hr style="border-color:#444">
-        <p class="text-center mb-0">© {{ 'now'|date('Y') }} SchoolPrepar — Tous droits réservés</p>
-    </div>
+﻿<footer class="py-5 mt-5">
+ <div class="container">
+ <div class="row">
+ <div class="col-md-4 mb-3">
+ <h5 class="text-white">SchoolPrepar</h5>
+ <p>La plateforme de préparation scolaire au Togo.</p>
+ </div>
+ <div class="col-md-4 mb-3">
+ <h6 class="text-white">Navigation</h6>
+ <ul class="list-unstyled">
+ <li><a href="{{ path('app_home') }}" class="text-decoration-none" style="color:#aaa">Accueil</a></li>
+ <li><a href="{{ path('app_filiere_index') }}" class="text-decoration-none" style="color:#aaa">Filières</a></li>
+ <li><a href="{{ path('app_etablissement_index') }}" class="text-decoration-none" style="color:#aaa">Établissements</a></li>
+ </ul>
+ </div>
+ <div class="col-md-4 mb-3">
+ <h6 class="text-white">Contact</h6>
+ <p>contact@schoolprepar.tg</p>
+ <p>Lomé, Togo</p>
+ </div>
+ </div>
+ <hr style="border-color:#444">
+ <p class="text-center mb-0"> {{ 'now'|date('Y') }}SchoolPrepar — Tous droits réservés</p>
+ </div>
 </footer>

@@ -48,8 +48,17 @@ class AppFixtures extends Fixture
         foreach ($etablissementData as $i => [$nom, $ville, $type, $contact]) {
             $e = new Etablissement();
             $e->setNom($nom)->setVille($ville)->setType($type)->setContact($contact);
-            $e->addFiliere($filieres[$i % count($filieres)]);
-            $e->addFiliere($filieres[($i + 1) % count($filieres)]);
+
+            if ($nom === 'iP Net Institute of Technology') {
+                // iP Net propose toutes les filières
+                foreach ($filieres as $f) {
+                    $e->addFiliere($f);
+                }
+            } else {
+                $e->addFiliere($filieres[$i % count($filieres)]);
+                $e->addFiliere($filieres[($i + 1) % count($filieres)]);
+            }
+
             $manager->persist($e);
             $etablissements[] = $e;
         }

@@ -1,80 +1,77 @@
-{% extends 'admin/base.html.twig' %}
+﻿{% extends 'admin/base.html.twig' %}
 
 {% block title %}Dashboard — Admin{% endblock %}
 
 {% block body %}
 <div class="row mb-4">
-    <div class="col-md-3 mb-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="fs-1">📚</div>
-                <div>
-                    <h6 class="text-muted mb-0">Filières</h6>
-                    <h3 class="mb-0 text-primary">{{ nbFilieres }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 mb-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="fs-1">🏫</div>
-                <div>
-                    <h6 class="text-muted mb-0">Établissements</h6>
-                    <h3 class="mb-0 text-success">{{ nbEtablissements }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 mb-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="fs-1">📅</div>
-                <div>
-                    <h6 class="text-muted mb-0">Événements</h6>
-                    <h3 class="mb-0 text-danger">{{ nbEvenements }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 mb-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="fs-1">👤</div>
-                <div>
-                    <h6 class="text-muted mb-0">Utilisateurs</h6>
-                    <h3 class="mb-0 text-warning">{{ nbUsers }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+ <div class="col-md-3 mb-3">
+ <div class="card border-0 shadow-sm">
+ <div class="card-body d-flex align-items-center gap-3">
+ 
+ <div>
+ <h6 class="text-muted mb-0">Filières</h6>
+ <h3 class="mb-0 text-primary">{{ nbFilieres }}</h3>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-md-3 mb-3">
+ <div class="card border-0 shadow-sm">
+ <div class="card-body d-flex align-items-center gap-3">
+ 
+ <div>
+ <h6 class="text-muted mb-0">Établissements</h6>
+ <h3 class="mb-0 text-success">{{ nbEtablissements }}</h3>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-md-3 mb-3">
+ <div class="card border-0 shadow-sm">
+ <div class="card-body d-flex align-items-center gap-3">
+ 
+ <div>
+ <h6 class="text-muted mb-0">Événements</h6>
+ <h3 class="mb-0 text-danger">{{ nbEvenements }}</h3>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-md-3 mb-3">
+ <div class="card border-0 shadow-sm">
+ <div class="card-body d-flex align-items-center gap-3">
+ 
+ <div>
+ <h6 class="text-muted mb-0">Utilisateurs</h6>
+ <h3 class="mb-0 text-warning">{{ nbUsers }}</h3>
+ </div>
+ </div>
+ </div>
+ </div>
 </div>
 
 <div class="row">
-    <div class="col-md-6 mb-4">
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white fw-bold">Accès rapides</div>
-            <div class="card-body d-flex flex-wrap gap-2">
-                <a href="{{ path('app_admin_filiere_index') }}" class="btn btn-outline-primary">
-                    📚 Gérer les filières
-                </a>
-                <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-outline-success">
-                    🏫 Gérer les établissements
-                </a>
-                <a href="{{ path('app_admin_evenement_index') }}" class="btn btn-outline-danger">
-                    📅 Gérer les événements
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 mb-4">
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white fw-bold">Informations</div>
-            <div class="card-body">
-                <p class="text-muted">Bienvenue dans le panneau d'administration de SchoolPrepar.</p>
-                <p class="text-muted mb-0">Gérez les filières, établissements et événements depuis ce tableau de bord.</p>
-            </div>
-        </div>
-    </div>
+ <div class="col-md-6 mb-4">
+ <div class="card border-0 shadow-sm">
+ <div class="card-header bg-white fw-bold">Accès rapides</div>
+ <div class="card-body d-flex flex-wrap gap-2">
+ <a href="{{ path('app_admin_filiere_index') }}" class="btn btn-outline-primary">Gérer les filières
+ </a>
+ <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-outline-success">Gérer les établissements
+ </a>
+ <a href="{{ path('app_admin_evenement_index') }}" class="btn btn-outline-danger">Gérer les événements
+ </a>
+ </div>
+ </div>
+ </div>
+ <div class="col-md-6 mb-4">
+ <div class="card border-0 shadow-sm">
+ <div class="card-header bg-white fw-bold">Informations</div>
+ <div class="card-body">
+ <p class="text-muted">Bienvenue dans le panneau d'administration deSchoolPrepar.</p>
+ <p class="text-muted mb-0">Gérez les filières, établissements et événements depuis ce tableau de bord.</p>
+ </div>
+ </div>
+ </div>
 </div>
 {% endblock %}

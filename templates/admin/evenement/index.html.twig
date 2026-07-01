@@ -1,59 +1,58 @@
-{% extends 'admin/base.html.twig' %}
+﻿{% extends 'admin/base.html.twig' %}
 
 {% block title %}Gestion des événements — Admin{% endblock %}
 
 {% block body %}
 {% for label, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="alert alert-{{ label == 'success' ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    {% endfor %}
+ {% for message in messages %}
+ <div class="alert alert-{{ label == 'success' ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+ {{ message }}
+ <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+ </div>
+ {% endfor %}
 {% endfor %}
 
 <div class="card border-0 shadow-sm">
-    <div class="card-header bg-white d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">📅 Tous les événements</h5>
-        <a href="{{ path('app_admin_evenement_new') }}" class="btn btn-primary btn-sm">+ Ajouter</a>
-    </div>
-    <div class="card-body">
-        <table class="table table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th>#</th>
-                    <th>Titre</th>
-                    <th>Date</th>
-                    <th>Lieu</th>
-                    <th>Établissement</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for ev in evenements %}
-                <tr>
-                    <td>{{ ev.id }}</td>
-                    <td><strong>{{ ev.titre }}</strong></td>
-                    <td>{{ ev.dateEvenement|date('d/m/Y H:i') }}</td>
-                    <td>{{ ev.lieu ?? '—' }}</td>
-                    <td>{{ ev.etablissement ? ev.etablissement.nom : '—' }}</td>
-                    <td>
-                        <a href="{{ path('app_admin_evenement_show', {id: ev.id}) }}" class="btn btn-sm btn-outline-secondary">👁 Voir</a>
-                        <a href="{{ path('app_admin_evenement_edit', {id: ev.id}) }}" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
-                        <form method="post" action="{{ path('app_admin_evenement_delete', {id: ev.id}) }}" class="d-inline"
-                              onsubmit="return confirm('Supprimer cet événement ?')">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ev.id) }}">
-                            <button class="btn btn-sm btn-outline-danger">🗑 Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="6" class="text-center text-muted py-4">Aucun événement enregistré.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+ <div class="card-header bg-white d-flex justify-content-between align-items-center"><h5 class="mb-0">Tous les événements</h5>
+ <a href="{{ path('app_admin_evenement_new') }}" class="btn btn-primary btn-sm">+ Ajouter</a>
+ </div>
+ <div class="card-body">
+ <table class="table table-hover">
+ <thead class="table-light">
+ <tr>
+ <th>#</th>
+ <th>Titre</th>
+ <th>Date</th>
+ <th>Lieu</th>
+ <th>Établissement</th>
+ <th>Actions</th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for ev in evenements %}
+ <tr>
+ <td>{{ ev.id }}</td>
+ <td><strong>{{ ev.titre }}</strong></td>
+ <td>{{ ev.dateEvenement|date('d/m/Y H:i') }}</td>
+ <td>{{ ev.lieu ?? '—' }}</td>
+ <td>{{ ev.etablissement ? ev.etablissement.nom : '—' }}</td>
+ <td>
+ <a href="{{ path('app_admin_evenement_show', {id: ev.id}) }}" class="btn btn-sm btn-outline-secondary">Voir</a>
+ <a href="{{ path('app_admin_evenement_edit', {id: ev.id}) }}" class="btn btn-sm btn-outline-primary">Modifier</a>
+ <form method="post" action="{{ path('app_admin_evenement_delete', {id: ev.id}) }}" class="d-inline"
+ onsubmit="return confirm('Supprimer cet événement ?')">
+ <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ev.id) }}">
+ <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+ </form>
+ </td>
+ </tr>
+ {% else %}
+ <tr>
+ <td colspan="6" class="text-center text-muted py-4">Aucun événement enregistré.</td>
+ </tr>
+ {% endfor %}
+ </tbody>
+ </table>
+ </div>
 </div>
 {% endblock %}

@@ -1,48 +1,47 @@
-{% extends 'front/base.html.twig' %}
+﻿{% extends 'front/base.html.twig' %}
 
-{% block title %}{{ filiere.nom }} — SchoolPrepar{% endblock %}
+{% block title %}{{ filiere.nom }} —SchoolPrepar{% endblock %}
 
 {% block body %}
 <div class="container py-5">
-    <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ path('app_filiere_index') }}">Filières</a></li>
-            <li class="breadcrumb-item active">{{ filiere.nom }}</li>
-        </ol>
-    </nav>
+ <nav aria-label="breadcrumb" class="mb-4">
+ <ol class="breadcrumb">
+ <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
+ <li class="breadcrumb-item"><a href="{{ path('app_filiere_index') }}">Filières</a></li>
+ <li class="breadcrumb-item active">{{ filiere.nom }}</li>
+ </ol>
+ </nav>
 
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h2 class="mb-0">{{ filiere.nom }}</h2>
-        </div>
-        <div class="card-body">
-            <p class="lead">{{ filiere.description ?? 'Aucune description disponible.' }}</p>
-            {% if filiere.duree %}
-            <hr>
-            <p><strong>⏱ Durée :</strong> {{ filiere.duree }}</p>
-            {% endif %}
+ <div class="card shadow-sm">
+ <div class="card-header bg-primary text-white"><h2 class="mb-0">{{ filiere.nom }}</h2>
+ </div>
+ <div class="card-body">
+ <p class="lead">{{ filiere.description ?? 'Aucune description disponible.' }}</p>
+ {% if filiere.duree %}
+ <hr>
+ <p><strong>Durée :</strong> {{ filiere.duree }}</p>
+ {% endif %}
 
-            {% if filiere.etablissements is not empty %}
-            <hr>
-            <h5>🏫 Établissements proposant cette filière</h5>
-            <div class="row">
-                {% for etab in filiere.etablissements %}
-                <div class="col-md-6 mb-3">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body">
-                            <h6 class="card-title">{{ etab.nom }}</h6>
-                            <span class="text-muted small">📍 {{ etab.ville }}</span>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </div>
-        <div class="card-footer">
-            <a href="{{ path('app_filiere_index') }}" class="btn btn-secondary">← Retour aux filières</a>
-        </div>
-    </div>
+ {% if filiere.etablissements is not empty %}
+ <hr>
+ <h5>Établissements proposant cette filière</h5>
+ <div class="row">
+ {% for etab in filiere.etablissements %}
+ <div class="col-md-6 mb-3">
+ <div class="card border-0 shadow-sm">
+ <div class="card-body">
+ <h6 class="card-title">{{ etab.nom }}</h6>
+ <span class="text-muted small"> {{ etab.ville }}</span>
+ </div>
+ </div>
+ </div>
+ {% endfor %}
+ </div>
+ {% endif %}
+ </div>
+ <div class="card-footer">
+ <a href="{{ path('app_filiere_index') }}" class="btn btn-secondary">← Retour aux filières</a>
+ </div>
+ </div>
 </div>
 {% endblock %}

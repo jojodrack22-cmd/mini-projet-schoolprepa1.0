@@ -1,25 +1,24 @@
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 
 {% block title %}Les filières{% endblock %}
 
 {% block body %}
 <h2 class="mb-4">Toutes les filières</h2>
 <div class="row">
-    {% for filiere in filieres %}
-    <div class="col-md-6 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title text-primary">{{ filiere.nom }}</h5>
-                <p class="text-muted">{{ filiere.description }}</p>
-                <span class="badge bg-secondary">{{ filiere.duree }}</span>
-            </div>
-            <div class="card-footer bg-white">
-                <a href="{{ path('app_filiere_show', {'id': filiere.id}) }}" class="btn btn-outline-primary btn-sm">
-                    Voir le détail →
-                </a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+ {% for filiere in filieres %}
+ <div class="col-md-6 mb-4">
+ <div class="card h-100 shadow-sm">
+ <div class="card-body">
+ <h5 class="card-title text-primary">{{ filiere.nom }}</h5>
+ <p class="text-muted">{{ filiere.description }}</p>
+ <span class="badge bg-secondary">{{ filiere.duree }}</span>
+ </div>
+ <div class="card-footer bg-white">
+ <a href="{{ path('app_filiere_show', {'id': filiere.id}) }}" class="btn btn-outline-primary btn-sm">Voir le détail →
+ </a>
+ </div>
+ </div>
+ </div>
+ {% endfor %}
 </div>
 {% endblock %}

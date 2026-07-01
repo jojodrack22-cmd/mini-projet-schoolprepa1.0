@@ -1,48 +1,47 @@
-{% extends 'admin/base.html.twig' %}
+﻿{% extends 'admin/base.html.twig' %}
 
 {% block title %}Nouvel établissement — Admin{% endblock %}
 
 {% block body %}
 <div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">🏫 Nouvel établissement</h5>
-                <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
-            </div>
-            <div class="card-body">
-                {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
-                    <div class="mb-3">
-                        {{ form_label(form.nom) }}
-                        {{ form_widget(form.nom) }}
-                        {{ form_errors(form.nom) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_label(form.ville) }}
-                        {{ form_widget(form.ville) }}
-                        {{ form_errors(form.ville) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_label(form.type) }}
-                        {{ form_widget(form.type) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_label(form.contact) }}
-                        {{ form_widget(form.contact) }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Filières proposées</label>
-                        <div class="border rounded p-3" style="max-height:200px; overflow-y:auto;">
-                            {{ form_widget(form.filieres) }}
-                        </div>
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                        <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-outline-secondary">Annuler</a>
-                    </div>
-                {{ form_end(form) }}
-            </div>
-        </div>
-    </div>
+ <div class="col-md-8">
+ <div class="card border-0 shadow-sm">
+ <div class="card-header bg-white d-flex justify-content-between align-items-center"><h5 class="mb-0">Nouvel établissement</h5>
+ <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-sm btn-outline-secondary">← Retour</a>
+ </div>
+ <div class="card-body">
+ {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+ <div class="mb-3">
+ {{ form_label(form.nom) }}
+ {{ form_widget(form.nom) }}
+ {{ form_errors(form.nom) }}
+ </div>
+ <div class="mb-3">
+ {{ form_label(form.ville) }}
+ {{ form_widget(form.ville) }}
+ {{ form_errors(form.ville) }}
+ </div>
+ <div class="mb-3">
+ {{ form_label(form.type) }}
+ {{ form_widget(form.type) }}
+ </div>
+ <div class="mb-3">
+ {{ form_label(form.contact) }}
+ {{ form_widget(form.contact) }}
+ </div>
+ <div class="mb-3">
+ <label class="form-label fw-semibold">Filières proposées</label>
+ <div class="border rounded p-3" style="max-height:200px; overflow-y:auto;">
+ {{ form_widget(form.filieres) }}
+ </div>
+ </div>
+ <div class="d-flex gap-2">
+ <button type="submit" class="btn btn-primary">Enregistrer</button>
+ <a href="{{ path('app_admin_etablissement_index') }}" class="btn btn-outline-secondary">Annuler</a>
+ </div>
+ {{ form_end(form) }}
+ </div>
+ </div>
+ </div>
 </div>
 {% endblock %}
